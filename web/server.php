@@ -13,7 +13,8 @@ $socket = new React\Socket\Server($loop);
 $http = new React\Http\Server($socket, $loop);
 
 $http->on('request', $app);
-echo "Server running at http://127.0.0.1\n";
+echo "Server running\n";
 
-$socket->listen(1337);
+$port = getenv('PORT');
+$socket->listen($port, '0.0.0.0');
 $loop->run();
