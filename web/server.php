@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $i = 0;
 $app = function ($request, $response) use ($i) {
@@ -13,8 +13,8 @@ $socket = new React\Socket\Server($loop);
 $http = new React\Http\Server($socket, $loop);
 
 $http->on('request', $app);
-echo "Server running\n";
 
 $port = getenv('PORT');
-$socket->listen($port, '0.0.0.0');
+$socket->listen($port, '127.0.0.1');
+echo "Server listen, go running\n";
 $loop->run();
